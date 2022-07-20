@@ -44,7 +44,7 @@ function App() {
 
             <Box p="4">
               <Flex>
-                <Input placeholder="Enter a todo item" size="lg" focusBorderColor='whatsapp.500' />
+                <Input placeholder="Enter something" size="lg" focusBorderColor='whatsapp.500' />
                 <Box ml="5" display="flex" alignItems="center">
                   <Button colorScheme="whatsapp" variant="solid">
                     <Text fontSize="1em" fontFamily={'Poppins'} fontWeight={'700'} color={'#fefefe'}>
@@ -59,7 +59,7 @@ function App() {
 
             <Box p="4">
               <Flex>
-                <Text fontSize="1.5em" fontFamily={'Poppins'}>
+                <Text fontSize="1.5em" fontFamily={'Poppins'} fontWeight={'700'} color={'#0f172a'}>
                   List 📃
                 </Text>
               </Flex>
@@ -86,6 +86,7 @@ function App() {
                 </OrderedList>
               </Flex>
             </Box>
+            
           </Box>
         </Center>
       </Box>
