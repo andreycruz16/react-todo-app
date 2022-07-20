@@ -1,4 +1,12 @@
-import { Box, Text, Center, Flex, Spacer, Square, Circle, ButtonGroup, Button } from '@chakra-ui/react';
+import { Box, Text, Center, Flex, Spacer, Button, Input, Divider } from '@chakra-ui/react';
+import {
+  List,
+  ListItem,
+  ListIcon,
+  OrderedList,
+  UnorderedList,
+} from '@chakra-ui/react'
+
 // import './App.scss'
 
 function App() {
@@ -7,7 +15,7 @@ function App() {
       <Box bg="#f1f5f9">
         <Center>
           <Box bg="#f1f5f9" h="100vh" w="740px">
-            <Box p="4" bgColor="gray.300">
+            <Box p="4" mt={'2'} bgColor="gray.300" borderRadius="10">
               <Flex>
                 <Text fontSize="2em" fontFamily={'Poppins'} fontWeight={'700'} color={'#0f172a'}>
                   todo
@@ -17,12 +25,8 @@ function App() {
                 </Text>
                 <Spacer />
                 <Box display="flex" alignItems="center">
-                  <Button
-                    onClick={() => {
-                      alert('open modal');
-                    }}
-                  >
-                    <Text fontSize="1.5em" fontFamily={'Poppins'} fontWeight={'700'} color={'#94a3b8'}>
+                  <Button variant="ghost">
+                    <Text fontSize="2em" fontFamily={'Poppins'} fontWeight={'700'} color={'#0f172a'}>
                       ?
                     </Text>
                   </Button>
@@ -40,17 +44,46 @@ function App() {
 
             <Box p="4">
               <Flex>
+                <Input placeholder="Enter a todo item" size="lg" focusBorderColor='whatsapp.500' />
+                <Box ml="5" display="flex" alignItems="center">
+                  <Button colorScheme="whatsapp" variant="solid">
+                    <Text fontSize="1em" fontFamily={'Poppins'} fontWeight={'700'} color={'#fefefe'}>
+                      ADD
+                    </Text>
+                  </Button>
+                </Box>
+              </Flex>
+            </Box>
+
+            <Divider />
+
+            <Box p="4">
+              <Flex>
                 <Text fontSize="1.5em" fontFamily={'Poppins'}>
                   List 📃
                 </Text>
               </Flex>
             </Box>
 
-            <Box p="4" bgColor="gray.100">
+            <Box pl="4" pr={'4'}>
               <Flex>
-                <Text fontSize="1.5em" fontFamily={'Poppins'}>
-                  Add New ➕
-                </Text>
+                <OrderedList>
+                  <ListItem>
+                    <Text fontSize="1em" fontFamily={'Poppins'}>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </Text>
+                  </ListItem>
+                  <ListItem>
+                    <Text fontSize="1em" fontFamily={'Poppins'}>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </Text>
+                  </ListItem>
+                  <ListItem>
+                    <Text fontSize="1em" fontFamily={'Poppins'}>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </Text>
+                  </ListItem>
+                </OrderedList>
               </Flex>
             </Box>
           </Box>
