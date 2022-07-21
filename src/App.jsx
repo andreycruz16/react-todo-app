@@ -1,15 +1,22 @@
 import { Box, Text, Center, Flex, Spacer, Button, Input, Divider } from '@chakra-ui/react';
-import {
-  List,
-  ListItem,
-  ListIcon,
-  OrderedList,
-  UnorderedList,
-} from '@chakra-ui/react'
-
+import { List, ListItem, ListIcon, OrderedList, UnorderedList } from '@chakra-ui/react';
+import { useToast } from '@chakra-ui/react';
 // import './App.scss'
 
 function App() {
+  const toast = useToast();
+
+  const showToast = () => {
+    toast({
+      title: 'New Item Added',
+      description: '',
+      status: 'success',
+      duration: 9000,
+      isClosable: true,
+      position: 'top',
+    });
+  };
+
   return (
     <div className="App">
       <Box bg="#f1f5f9">
@@ -44,9 +51,9 @@ function App() {
 
             <Box p="4">
               <Flex>
-                <Input placeholder="Enter something" size="lg" focusBorderColor='whatsapp.500' />
+                <Input placeholder="Enter something" size="lg" focusBorderColor="whatsapp.500" />
                 <Box ml="5" display="flex" alignItems="center">
-                  <Button colorScheme="whatsapp" variant="solid">
+                  <Button colorScheme="whatsapp" variant="solid" onClick={showToast}>
                     <Text fontSize="1em" fontFamily={'Poppins'} fontWeight={'700'} color={'#fefefe'}>
                       ADD
                     </Text>
@@ -86,7 +93,6 @@ function App() {
                 </OrderedList>
               </Flex>
             </Box>
-            
           </Box>
         </Center>
       </Box>
