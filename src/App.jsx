@@ -42,7 +42,7 @@ function App() {
     showToast('Error Occured', 'error');
     reset();
     clearErrors();
-  }
+  };
 
   const showToast = (title, status) => {
     toast({
@@ -139,6 +139,11 @@ function App() {
               </Text>
             </Box>
             <Box pl="4" pr={'4'}>
+              {items.length === 0 ? (
+                <Text fontSize="1em" fontFamily={'Poppins'}>
+                  No items added yet
+                </Text>
+              ) : null}
               <UnorderedList>
                 {items.reverse()?.map((item, index) => (
                   <ListItem key={index}>
