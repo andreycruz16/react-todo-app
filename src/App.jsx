@@ -9,34 +9,44 @@ import {
   Divider,
   FormControl,
   FormErrorMessage,
+  ListItem,
+  UnorderedList,
+  useToast,
 } from '@chakra-ui/react';
-import { ListItem, UnorderedList } from '@chakra-ui/react';
-import { useToast } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
-
-// import './App.scss'
+import { useState } from 'react';
+import { Wrap, WrapItem } from '@chakra-ui/react';
 
 function App() {
+  const [items, setItem] = useState([]);
+
   const toast = useToast();
+
   const {
     register,
     handleSubmit,
     watch,
+    reset,
+    clearErrors,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-    console.log(watch('newNoteInput')); // watch input value by passing the name of it
-    showToast('Note added', 'success');
+  const onSubmit = (data, e) => {
+    setItem((prevItems) => [...prevItems, data.note]);
+    showToast('Todo item added successfully', 'success');
+    reset();
+    clearErrors();
   };
+  const onError = (errors, e) => {
+    showToast('Error', errors);
+  }
 
   const showToast = (title, status) => {
     toast({
       title: title,
       description: '',
       status: status,
-      duration: 2000,
+      duration: 3000,
       isClosable: false,
       position: 'top-right',
     });
@@ -44,9 +54,9 @@ function App() {
 
   return (
     <div className="App">
-      <Box bg="#f1f5f9">
+      <Box bg="#f1f5f9" h={'100%'}>
         <Center>
-          <Box bg="#f1f5f9" h="100vh" w="740px">
+          <Box w="740px" bg="#f1f5f9">
             {/* HEADER */}
             <Box p="4" mt={'2'} bgColor="gray.300" borderRadius="10">
               <Flex>
@@ -58,7 +68,7 @@ function App() {
                 </Text>
                 <Spacer />
                 <Box display="flex" alignItems="center">
-                  <Button variant="ghost">
+                  <Button colorScheme="gray">
                     <Text fontSize="2em" fontFamily={'Poppins'} fontWeight={'700'} color={'#0f172a'}>
                       ?
                     </Text>
@@ -76,31 +86,17 @@ function App() {
               </Flex>
             </Box>
 
-            {/* FORM */}
-            {/* <Box p="4">
-              <Flex>
-                <Input placeholder="Enter something" size="lg" focusBorderColor="whatsapp.500" />
-                <Box ml="5" display="flex" alignItems="center">
-                  <Button colorScheme="whatsapp" variant="solid" onClick={showToast}>
-                    <Text fontSize="1em" fontFamily={'Poppins'} fontWeight={'700'} color={'#fefefe'}>
-                      ADD
-                    </Text>
-                  </Button>
-                </Box>
-              </Flex>
-            </Box> */}
-
             <Box p="4">
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <FormControl isInvalid={errors.newNoteInput}>
+              <form onSubmit={handleSubmit(onSubmit, onError)}>
+                <FormControl isInvalid={errors.note}>
                   <Flex>
                     <Input
-                      id="newNoteInput"
+                      id="note"
                       placeholder="Enter a todo item"
                       size="lg"
                       focusBorderColor="gray.300"
                       autoComplete="off"
-                      {...register('newNoteInput', {
+                      {...register('note', {
                         required: 'This field is required',
                         minLength: {
                           value: 3,
@@ -119,7 +115,7 @@ function App() {
                   <Box display="flex">
                     <FormErrorMessage>
                       <Text fontSize="1em" fontFamily={'Poppins'}>
-                        {errors.newNoteInput && errors.newNoteInput.message}
+                        {errors.note && errors.note.message}
                       </Text>
                     </FormErrorMessage>
                   </Box>
@@ -131,32 +127,20 @@ function App() {
 
             {/* LIST */}
             <Box p="4">
-              <Flex>
-                <Text fontSize="1.5em" fontFamily={'Poppins'} fontWeight={'700'} color={'#0f172a'}>
-                  todo list 📃
-                </Text>
-              </Flex>
+              <Text fontSize="1.5em" fontFamily={'Poppins'} fontWeight={'700'} color={'#0f172a'}>
+                todo list 📃
+              </Text>
             </Box>
             <Box pl="4" pr={'4'}>
-              <Flex>
-                <UnorderedList>
-                  <ListItem>
-                    <Text fontSize="1em" fontFamily={'Poppins'}>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              <UnorderedList>
+                {items.reverse()?.map((item, index) => (
+                  <ListItem key={index}>
+                    <Text fontSize="1.1em" fontFamily={'Poppins'}>
+                      {item}
                     </Text>
                   </ListItem>
-                  <ListItem>
-                    <Text fontSize="1em" fontFamily={'Poppins'}>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </Text>
-                  </ListItem>
-                  <ListItem>
-                    <Text fontSize="1em" fontFamily={'Poppins'}>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </Text>
-                  </ListItem>
-                </UnorderedList>
-              </Flex>
+                ))}
+              </UnorderedList>
             </Box>
           </Box>
         </Center>
