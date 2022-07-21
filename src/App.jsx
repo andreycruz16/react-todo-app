@@ -31,14 +31,17 @@ function App() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data, e) => {
+  const onSubmit = (data) => {
     setItem((prevItems) => [...prevItems, data.note]);
     showToast('Todo item added successfully', 'success');
     reset();
     clearErrors();
   };
-  const onError = (errors, e) => {
-    showToast('Error', errors);
+
+  const onError = () => {
+    showToast('Error Occured', 'error');
+    reset();
+    clearErrors();
   }
 
   const showToast = (title, status) => {
@@ -87,7 +90,7 @@ function App() {
             </Box>
 
             <Box p="4">
-              <form onSubmit={handleSubmit(onSubmit, onError)}>
+              <form onSubmit={handleSubmit(onSubmit)}>
                 <FormControl isInvalid={errors.note}>
                   <Flex>
                     <Input
@@ -101,6 +104,10 @@ function App() {
                         minLength: {
                           value: 3,
                           message: 'Minimum 3 characters',
+                        },
+                        maxLength: {
+                          value: 50,
+                          message: 'Minimum 50 characters',
                         },
                       })}
                     />
