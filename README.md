@@ -5,4 +5,4 @@
 Simple todo application. 
 ReactJS, Vite3, ChakraUI, React-Hook-Form
 
-![image](https://user-images.githubusercontent.com/11815512/181150422-0208a491-788e-4cc5-bbf9-fd88890633e5.png)
+![image](https://user-images.githubusercontent.com/11815512/181511118-251629ef-e056-4c8d-a4b7-4ed2fd11f837.png)
