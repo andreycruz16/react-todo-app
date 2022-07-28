@@ -12,7 +12,9 @@ import {
   ListItem,
   UnorderedList,
   useToast,
+  Link,
 } from '@chakra-ui/react';
+import { ExternalLinkIcon } from '@chakra-ui/icons'
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 
@@ -29,9 +31,10 @@ function Header() {
         <Spacer />
         <Box display="flex" alignItems="center">
           <Button colorScheme="gray">
-            <Text fontSize="2em" fontFamily={'Poppins'} fontWeight={'700'} color={'#0f172a'}>
-              ?
-            </Text>
+            <Link fontSize=".8em" fontFamily={'Poppins'} href='https://github.com/andreycruz16/react-todo-app' isExternal>
+              source{' '}
+              <ExternalLinkIcon mx='2px' />
+            </Link>
           </Button>
         </Box>
       </Flex>
